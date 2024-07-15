@@ -14,3 +14,4 @@ class TeacherList(generics.ListCreateAPIView):
 class TeacherDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Teacher.objects.all()
     serializer_class = TeacherSerializer
+    permission_classes = [permissions.IsAuthenticated]
