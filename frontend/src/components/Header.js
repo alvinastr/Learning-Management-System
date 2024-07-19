@@ -1,4 +1,4 @@
-function Home() {
+function Header() {
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
@@ -20,4 +20,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Header;
