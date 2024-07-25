@@ -1,6 +1,10 @@
 import {Link, useParams} from 'react-router-dom';
+import {useEffect} from 'react';
 
 function CourseDetail(){
+    useEffect(() => {
+        document.title = "Course Detail"
+    });
     let {course_id}=useParams();
     return (
         <div className="container mt-3">

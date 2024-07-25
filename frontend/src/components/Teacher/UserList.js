@@ -1,7 +1,11 @@
 import {Link} from 'react-router-dom';
 import TeacherSidebar from "./TeacherSidebar";
+import {useEffect} from "react";
 
 function UserList(){
+    useEffect(() => {
+        document.title = "User List"
+    });
     return (
         <div className="container mt-4">
             <div className="row">

@@ -1,6 +1,10 @@
 import {Link} from "react-router-dom";
+import {useEffect} from "react";
 
 function CategoryCourses(){
+    useEffect(() => {
+        document.title = "Web Development Courses"
+    });
     return(
         <div className="container mt-4">
             {/* Latest Course*/}

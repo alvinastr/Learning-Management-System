@@ -1,6 +1,10 @@
 import {Link} from 'react-router-dom';
+import {useEffect} from 'react';
 
 function TeacherRegister(){
+    useEffect(() => {
+        document.title = "Teacher Register"
+    });
     return (
         <div className="container mt-4">
             <div className="row">
@@ -11,11 +15,7 @@ function TeacherRegister(){
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail" className="form-label">Full Name</label>
-                                    <input type="email" className="form-control"/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="exampleInputEmail" className="form-label">Username</label>
-                                    <input type="email" className="form-control"/>
+                                    <input type="text" className="form-control"/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail" className="form-label">Email</label>
@@ -26,6 +26,14 @@ function TeacherRegister(){
                                     <input type="password" className="form-control" id="exampleInputPassword1"/>
                                 </div>
                                 <div className="mb-3">
+                                    <label htmlFor="exampleInputEmail" className="form-label">Qualification</label>
+                                    <input type="text" className="form-control"/>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="exampleInputEmail" className="form-label">Mobile NO</label>
+                                    <input type="number" className="form-control"/>
+                                </div>
+                                <div className="mb-3">
                                     <label htmlFor="exampleInputEmail" className="form-label">Skills</label>
                                     <textarea className="form-control"/>
                                     <div id="emailHelp" className="form-text">Python, PHP, Java, JavaScript, etc</div>
@@ -33,7 +41,8 @@ function TeacherRegister(){
                                 <div className="mb-3">
                                     <div className="form-check">
                                         <input className="form-check-input" type="checkbox" id="exampleCheck1"/>
-                                        <label className="form-check-label" htmlFor="disabledFieldsetCheck">Remember Me</label>
+                                        <label className="form-check-label" htmlFor="disabledFieldsetCheck">Remember
+                                            Me</label>
                                     </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Submit</button>

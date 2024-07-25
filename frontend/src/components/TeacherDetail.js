@@ -1,6 +1,9 @@
 import {Link} from "react-router-dom";
-
+import {useEffect} from "react";
 function TeacherDetail(){
+    useEffect(() => {
+        document.title = "Teacher Detail"
+    });
     return (
         <div className="container mt-3">
             <div className="row">
