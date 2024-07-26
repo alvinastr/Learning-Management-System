@@ -2,21 +2,14 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-const baseUrl = 'http://127.0.0.1:8080/api';
+const baseUrl = 'http://127.0.0.1:8000/api';
 function PopularTeachers(){
     const [teachers, setTeachers] = useState(null);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        axios.get(baseUrl + '/teacher/').then((response) => {
-                console.log(response.data);
-                setTeachers(response.data);
-            })
-            .catch((error) => {
-                setError(error.message);
-            });
-        document.title = "Popular Teachers";
-    }, [])
+    useEffect(() =>{
+        axios.get(baseUrl+"/teacher/").then((response) =>{
+            console.log(response.data);
+        });
+    },[]);
     return(
         <div className="container mt-4">
             {/* Latest Course*/}
