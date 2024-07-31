@@ -17,13 +17,18 @@ class CourseCategory(models.Model):
     description = models.TextField()
 
     class Meta:
-        verbose_name_plural = "2. oruse Category"
+        verbose_name_plural = "2. Course Category"
+
+    def __str__(self):
+        return self.title
 
 class Course(models.Model):
     category = models.ForeignKey(CourseCategory, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()
+    feature_img = models.ImageField(upload_to='course_images/', null=True)
+    techs = models.TextField(null=True)
 
     class Meta:
         verbose_name_plural = "3. Courses"

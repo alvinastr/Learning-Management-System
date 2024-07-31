@@ -17,9 +17,11 @@ import ChangePassword from "./User/ChangePassword";
 // Teacher
 import TeacherLogin from './Teacher/TeacherLogin';
 import TeacherRegister from './Teacher/TeacherRegister';
+import TeacherLogout from './Teacher/TeacherLogout';
 import TeacherDashboard from './Teacher/TeacherDashboard';
 import TeacherCourses from './Teacher/TeacherCourses';
 import AddCourse from './Teacher/AddCourse';
+import AddVideo from './Teacher/AddVideo';
 import UserList from "./Teacher/UserList";
 import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
@@ -46,6 +48,7 @@ function Main() {
             <Route path="/user-register" element={<Register />} />
             <Route path="/teacher-login" element={<TeacherLogin />} />
             <Route path="/teacher-register" element={<TeacherRegister />} />
+            <Route path="/teacher-logout" element={<TeacherLogout />} />
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
             <Route path="/user-dashboard" element={<Dashboard />} />
             <Route path="/teacher-courses" element={<TeacherCourses />} />
@@ -63,6 +66,7 @@ function Main() {
             <Route path="/popular-courses" element={<PopularCourses />} />
             <Route path="/popular-teachers" element={<PopularTeachers />} />
             <Route path="/category/:category_slug" element={<CategoryCourses />} />
+            <Route path="/add-video/:course_id" element={<AddVideo />} />
         </Switch>
         <Footer />
     </div>

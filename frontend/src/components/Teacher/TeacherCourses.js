@@ -20,18 +20,17 @@ function TeacherCourses(){
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Create By</th>
+                                    <th>Total Enrolled</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td>Python Development</td>
-                                    <td><Link to="/">Alvin</Link></td>
+                                    <td><Link to="/">1222</Link></td>
                                     <td>
-                                        <button className="btn btn-danger btm-sm text-center"
-                                                style={{width: '100%', display: 'flex', justifyContent: 'center'}}>Delete
-                                        </button>
+                                        <button className="btn btn-danger btm-sm active">Delete</button>
+                                        <Link className="btn btn-success btn-sm active ms-2" to="/add-video/2">Add Videos</Link>
                                     </td>
                                 </tr>
                                 </tbody>

@@ -1,11 +1,25 @@
 import {Link} from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
-import {useEffect} from "react";
+import {useEffect,useState} from "react";
+import axios from "axios";
 
+const baseUrl = "http://127.0.0.1:8000/api";
 function AddCourse(){
+    const [cats,setCats]=useState([]);
+
     useEffect(() => {
-        document.title = "Add Course"
-    });
+        try {
+            axios.get(baseUrl + '/category/')
+                .then((response) => {
+                    setCats(response.data);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+        document.title = "Add Course";
+    }, []);
+
+    // console.log(cats);
     return (
         <div className="container mt-4">
             <div className="row">
@@ -17,22 +31,29 @@ function AddCourse(){
                         <h5 className="card-header">Add Course</h5>
                         <div className="card-body">
                             <div className="mb-3">
-                                <label for="title" className="form-label">Title</label>
-                                <input type="text" className="form-control" id="title"/>
+                                <label htmlFor="title" className="form-label">Category</label>
+                                <select name="category" className="form-control">
+                                    {cats.map((category, index)=>{return <option key={index}>{category.title}</option>})}
+                                </select>
                             </div>
                             <div className="mb-3">
-                            <label htmlFor="exampleInputEmail" className="form-label">Description</label>
-                                <textarea className="form-control"/>
+                                <label htmlFor="title" className="form-label">Title</label>
+                                <input type="text" id="title" className="form-control" id="title"/>
                             </div>
                             <div className="mb-3">
-                                <label For="video" className="form-label">Course Video</label>
-                                <input type="file" className="form-control"/>
+                                <label htmlFor="description" className="form-label">Description</label>
+                                <textarea className="form-control" id="description"/>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleInputEmail" className="form-label">Technologies</label>
-                                <textarea className="form-control"/>
+                                <label htmlFor="video" className="form-label">Featured Images</label>
+                                <input type="file" className="form-control" id="video"/>
                             </div>
-                            <button className="btn btn-primary">Update</button>
+                            <div className="mb-3">
+                                <label htmlFor="techs" className="form-label">Technologies</label>
+                                <textarea className="form-control" placeholder="Python, JavaScript, SQL, PHP"
+                                          id="techs"/>
+                            </div>
+                            <button type="submit" className="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </section>
