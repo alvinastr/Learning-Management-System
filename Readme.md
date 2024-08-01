@@ -1,7 +1,6 @@
 ## Learning management System
 
 ## Features
-------------------------------------------------
 - Website
     - Explore Courses according to the categories
     - Search courses with keywords
