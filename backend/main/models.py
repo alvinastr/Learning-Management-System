@@ -27,11 +27,21 @@ class Course(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()
-    feature_img = models.ImageField(upload_to='course_images/', null=True)
+    featured_img = models.ImageField(upload_to='course_imgs/', null=True)
     techs = models.TextField(null=True)
 
     class Meta:
         verbose_name_plural = "3. Courses"
+
+class Video(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    video = models.FileField(upload_to='course_videos/', null=True)
+    remarks = models.TextField(null=True)
+
+    class Meta:
+        verbose_name_plural = "4. Video"
 
 class Student(models.Model):
     full_name = models.CharField(max_length=100)
@@ -43,7 +53,7 @@ class Student(models.Model):
     interested_category = models.TextField()
 
     class Meta:
-        verbose_name_plural = "4. Students"
+        verbose_name_plural = "5. Students"
 
 
 

@@ -28,6 +28,7 @@ function TeacherLogin() {
                 .then((response) => {
                     if (response.data.bool === true) {
                         localStorage.setItem("teacherLoginStatus", true);
+                        localStorage.setItem("teacherId", response.data.teacher_id);
                         window.location.href = '/teacher-dashboard';
                     } else {
                         console.log("Login failed");
