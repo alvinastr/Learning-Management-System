@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -26,13 +26,15 @@ function AddVideo(){
     const handleFileChange = (event) => {
         setVideoData({
             ...videoData,
-            f_img: event.target.files[0]
+            video: event.target.files[0]
         });
     }
 
+    const {course_id} = useParams();
+
     const formSubmit = () => {
         const _formData = new FormData();
-        _formData.append('course', 1);
+        _formData.append('course', course_id);
         _formData.append('title', videoData.title);
         _formData.append('description', videoData.description);
         if (videoData.video instanceof File) {
@@ -87,7 +89,7 @@ function AddVideo(){
                         <div className="card-body">
                             <div className="mb-3">
                                 <label For="title" className="form-label">Title</label>
-                                <input type="text" onChange={handleChange} name="title" id="title" className="form-control" id="title"/>
+                                <input type="text" onChange={handleChange} name="title" className="form-control" id="title"/>
                             </div>
                             <div className="mb-3">
                             <label For="description" className="form-label">Description</label>

@@ -23,6 +23,8 @@ import TeacherCourses from './Teacher/TeacherCourses';
 import AddCourse from './Teacher/AddCourse';
 import AddVideo from './Teacher/AddVideo';
 import UserList from "./Teacher/UserList";
+import CourseVideo from "./Teacher/CourseVideo";
+import EditVideo from "./Teacher/EditVideo";
 import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
 
@@ -63,10 +65,13 @@ function Main() {
             <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/teacher-detail/:teacher_id" element={<TeacherDetail />} />
             <Route path="/all-courses" element={<AllCourses />} />
+            <Route path="/all-videos/course_id" element={<CourseVideo />} />
             <Route path="/popular-courses" element={<PopularCourses />} />
             <Route path="/popular-teachers" element={<PopularTeachers />} />
             <Route path="/category/:category_slug" element={<CategoryCourses />} />
             <Route path="/add-video/:course_id" element={<AddVideo />} />
+            <Route path={"/all-videos/:course_id"} element={<CourseVideo />} />
+            <Route path={"/edit-video/:video_id"} element={<EditVideo />} />
         </Switch>
         <Footer />
     </div>
