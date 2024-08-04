@@ -25,7 +25,7 @@ function CourseVideo(){
     },[course_id]);
 
     // Delete button click
-    const handleDeleteClick = () => {
+    const handleDeleteClick = (video_id) => {
         Swal.fire({
             title: 'Confirm Delete',
             text: 'Are you sure you want to delete this video?',
@@ -34,7 +34,32 @@ function CourseVideo(){
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-        })
+        }).then ((result) => {
+            if (result.isConfirmed) {
+                try{
+                    axios.delete(baseUrl + '/video/' + video_id)
+                    .then ((response)=>{
+                        Swal.fire('success', 'Data has been deleted',);
+                        try{
+                            axios.get(baseUrl + '/course-video/' + course_id)
+                            .then ((response) => {
+                                setTotalResult(response.data.length);
+                                setVideoData(response.data);
+                            });
+                        }catch(error){
+                            console.error(error);
+                        }
+                        // console.log(response);
+                        // setTotalResult(response.data.lenght);
+                        // setVideoData(response.data);
+                    });
+                }catch (error) {
+                    Swal.fire('error', 'Data has not been deleted',);
+                }
+            }else{
+                Swal.fire('error', 'Data has not been deleted',);
+            }
+        });
     }
 
     return (
@@ -59,14 +84,17 @@ function CourseVideo(){
                                 <tbody>
                                 {videoData.map((video, index) =>
                                     <tr key={index}>
-                                        <td><Link to={'/edit-video/'+video.id}>{video.title}</Link></td>
+                                        <td><Link to={'/edit-video/' + video.id}>{video.title}</Link></td>
                                         <td>
-                                            {video.video && video.video.url ? (
-                                                <video controls width="250">
-                                                    <source src={video.video.url} type="video/webm"/>
-                                                    <source src={video.video.url} type="video/mp4"/>
-                                                    Sorry, your browser doesn't support embedded videos.
-                                                </video>
+
+                                            {video.video ? (
+                                                <div className="d-flex justify-content-center">
+                                                    <video controls width="250" className="justify-content-center">
+                                                        <source src={video.video} type="video/webm"/>
+                                                        <source src={video.video} type="video/mp4"/>
+                                                        Sorry, your browser doesn't support embedded videos.
+                                                    </video>
+                                                </div>
                                             ) : (
                                                 <p>No video available</p>
                                             )}
@@ -75,7 +103,7 @@ function CourseVideo(){
                                         <td>
                                             <Link to={'/edit-video/' + video.id} className="btn btn-info"><i
                                                 className="bi bi-pencil-square"></i></Link>
-                                            <button onClick={handleDeleteClick} className="btn btn-danger ms-2"><i
+                                            <button onClick={()=>handleDeleteClick(video.id)} className="btn btn-danger ms-2"><i
                                                 className="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
