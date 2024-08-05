@@ -25,6 +25,7 @@ import AddVideo from './Teacher/AddVideo';
 import UserList from "./Teacher/UserList";
 import CourseVideo from "./Teacher/CourseVideo";
 import EditVideo from "./Teacher/EditVideo";
+import EditCourse from "./Teacher/EditCourse";
 import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
 
@@ -72,6 +73,7 @@ function Main() {
             <Route path="/add-video/:course_id" element={<AddVideo />} />
             <Route path={"/all-videos/:course_id"} element={<CourseVideo />} />
             <Route path={"/edit-video/:video_id"} element={<EditVideo />} />
+            <Route path={"/edit-course/:course_id"} element={<EditCourse />} />
         </Switch>
         <Footer />
     </div>

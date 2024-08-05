@@ -48,6 +48,10 @@ class TeacherCourseList(generics.ListCreateAPIView):
         teacher = models.Teacher.objects.get(pk=teacher_id)
         return models.Course.objects.filter(teacher=teacher)
 
+class TeacherCourseDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Course.objects.all()
+    serializer_class = CourseSerializer
+
 class VideoList(generics.ListCreateAPIView):
     queryset = models.Video.objects.all()
     serializer_class = VideoSerializer
