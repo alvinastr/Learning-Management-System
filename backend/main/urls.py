@@ -17,4 +17,6 @@ urlpatterns = [
     path('video/<int:pk>/', views.VideoDetail.as_view()), #8
     # Teacher
     path('teacher-course/<int:teacher_id>', views.TeacherCourseList.as_view()),
+    # Teacher Specific Course
+    path('teacher-course-detail/<int:pk>', views.TeacherCourseDetail.as_view())
 ]

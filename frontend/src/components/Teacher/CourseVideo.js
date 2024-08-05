@@ -70,7 +70,7 @@ function CourseVideo(){
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">All Videos ({totalresult})</h5>
+                        <h5 className="card-header">All Videos ({totalresult}) <Link className="btn btn-success btn-sm float-end" to={"/add-video/" + course_id}>Add Video</Link></h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
@@ -103,8 +103,7 @@ function CourseVideo(){
                                         <td>
                                             <Link to={'/edit-video/' + video.id} className="btn btn-info"><i
                                                 className="bi bi-pencil-square"></i></Link>
-                                            <button onClick={()=>handleDeleteClick(video.id)} className="btn btn-danger ms-2"><i
-                                                className="bi bi-trash"></i></button>
+                                            <button onClick={() => handleDeleteClick(video.id)} className="btn btn-danger ms-2"><i className="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
                                 )}
