@@ -62,63 +62,57 @@ function EditCourse(){
         });
     }
 
-    const formSubmit = () => {
-        const _formData = new FormData();
-        _formData.append("category", courseData.category);
-        _formData.append('teacher', 1);
-        _formData.append('title', courseData.title);
-        _formData.append('description', courseData.description);
-        if (courseData.f_img instanceof File) {
-            _formData.append('featured_img', courseData.f_img, courseData.f_img.name);
-        }
-        _formData.append('techs', courseData.techs);
+   const formSubmit = () => {
+    const _formData = new FormData();
+    _formData.append("category", courseData.category);
+    _formData.append('teacher', 1);
+    _formData.append('title', courseData.title);
+    _formData.append('description', courseData.description);
+    if (courseData.f_img instanceof File) {
+        _formData.append('featured_img', courseData.f_img, courseData.f_img.name);
+    }
+    _formData.append('techs', courseData.techs);
 
-        // Log form data for debugging
-        for (let [key, value] of _formData.entries()) {
-            console.log(key, value);
-        }
+    // Log form data for debugging
+    for (let [key, value] of _formData.entries()) {
+        console.log(key, value);
+    }
 
-        try {
-            axios.put(baseUrl + '/teacher-course-detail/', + course_id,_formData, {
-                headers: {
-                    'content-type': 'multipart/form-data'
-                }
-            })
-            .then((response) => {
-                if(response.status === 200){
-                    Swal.fire({
-                        title: 'Data has been updated',
-                        icon: 'success',
-                        toast: true,
-                        timer: 3000,
-                        position: 'top-right',
-                        timerProgressBar: true,
-                        showConfirmButton: false,
-                    });
-                }
-                // console.log(response.data);
-                // window.location.href = '/add-course/'
-            })
-            .catch((error) => {
-                if (error.response) {
-                    // The request was made and the server responded with a status code
-                    // that falls out of the range of 2xx
-                    console.log('Error data:', error.response.data);
-                    console.log('Error status:', error.response.status);
-                    console.log('Error headers:', error.response.headers);
-                } else if (error.request) {
-                    // The request was made but no response was received
-                    console.log('Error request:', error.request);
-                } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.log('Error message:', error.message);
-                }
-                console.log('Error config:', error.config);
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    try {
+        axios.put(`${baseUrl}/teacher-course-detail/${course_id}/`, _formData, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+        .then((response) => {
+            if(response.status === 200){
+                Swal.fire({
+                    title: 'Data has been updated',
+                    icon: 'success',
+                    toast: true,
+                    timer: 3000,
+                    position: 'top-right',
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                });
+            }
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.log('Error data:', error.response.data);
+                console.log('Error status:', error.response.status);
+                console.log('Error headers:', error.response.headers);
+            } else if (error.request) {
+                console.log('Error request:', error.request);
+            } else {
+                console.log('Error message:', error.message);
+            }
+            console.log('Error config:', error.config);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
     return (
         <div className="container mt-4">
             <div className="row">
