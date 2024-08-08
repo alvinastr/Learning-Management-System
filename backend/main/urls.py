@@ -9,6 +9,8 @@ urlpatterns = [
     path('category/', views.CategoryList.as_view()), #4
     # Course
     path('course/',views.CourseList.as_view()), #5
+
+    path('course/<int:pk>/', views.CourseDetail.as_view()), #6
     # Video
     path('video/', views.VideoList.as_view()), #6
     # Specific Course Video
