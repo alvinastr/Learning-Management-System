@@ -1,9 +1,21 @@
-import {Link} from "react-router-dom";
-import {useEffect} from "react";
+import {Link, useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+const baseUrl = "http://127.0.0.1:8000/api";
 function TeacherDetail(){
+    const [courseData, setCourseData] = useState([]);
+    const [teacherData, setTeacherData] = useState([]);
+    let {teacher_id} = useParams();
     useEffect(() => {
-        document.title = "Teacher Detail"
-    });
+        axios.get(baseUrl + '/teacher/' + teacher_id)
+            .then((response) => {
+                setTeacherData(response.data);
+                setCourseData(response.data.teacher_courses);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
     return (
         <div className="container mt-3">
             <div className="row">
@@ -11,8 +23,8 @@ function TeacherDetail(){
                     <img src="/logo512.png" className="img-thumbnail" alt="Teacher Image"/>
                 </div>
                 <div className="col-8">
-                    <h3>Gabriela </h3>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                    <h3>{teacherData.full_name}</h3>
+                    <p>{teacherData.details}</p>
                     <p className="fw-bold">Skills : <Link to="/category/python">Python</Link>, <Link to="/teacher-detail/1">JavaScript</Link></p>
                     <p className="fw-bold">Recent Course: <Link to="/teacher-detail/1">Django Course</Link></p>
                     <p className="fw-bold">Rating : 4/5</p>
@@ -24,10 +36,9 @@ function TeacherDetail(){
                     Course List
                 </h5>
                 <div className="list-group list-group-flush">
-                    <Link to="/detail/1" className="list-group-item list-group-item-action">Python Course 1</Link>
-                    <Link to="/detail/1" className="list-group-item list-group-item-action">Python Course 2</Link>
-                    <Link to="/detail/1" className="list-group-item list-group-item-action">Python Course 3</Link>
-                    <Link to="/detail/1" className="list-group-item list-group-item-action">Python Course 4</Link>
+                    {courseData.map((course, index) =>
+                        <Link to={`/detail/${course.id}`} className="list-group-item list-group-item-action">{course.title}</Link>
+                    )}
                 </div>
             </div>
         </div>
