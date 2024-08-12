@@ -38,6 +38,10 @@ class Course(models.Model):
         related_videos = Course.objects.filter(techs__icontains=self.techs)
         return serializers.serialize('json', related_videos)
 
+    def tech_list(self):
+        tech_list = self.techs.split(',')
+        return tech_list
+
 class Video(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_videos')
     title = models.CharField(max_length=200)

@@ -7,7 +7,7 @@ function AllCourses(){
     const [courseData, SetCourseData] = useState([]);
     useEffect(() => {
         try{
-            axios.get(baseUrl + '/course/')
+            axios.get(baseUrl + '/course/?category='+category_slug)
                 .then((response) => {
                     SetCourseData(response.data);
                 });

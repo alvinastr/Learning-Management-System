@@ -1,14 +1,27 @@
-import {Link} from "react-router-dom";
-import {useEffect} from "react";
+import {Link, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "axios";
+
+const baseUrl = "http://127.0.0.1:8000/api";
 
 function CategoryCourses(){
+    const [courseData, SetCourseData] = useState([]);
+    const { category_slug } = useParams();
     useEffect(() => {
+        try{
+            axios.get(baseUrl + '/course/')
+                .then((response) => {
+                    SetCourseData(response.data);
+                });
+        }catch(error){
+            console.error(error);
+        }
         document.title = "Web Development Courses"
     });
     return(
         <div className="container mt-4">
             {/* Latest Course*/}
-            <h3 className="pb-1 mb-3">Web Development Courses</h3>
+            <h3 className="pb-1 mb-3">{category_slug}</h3>
             <div className="row mb-4">
                 <div className="col-md-3 mb-4">
                     <div className="card">
